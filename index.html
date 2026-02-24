@@ -3,32 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Obtén tu MAC en 10 segundos</title>
+  <title>Obtén tu MAC - INJIBOA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: system-ui; }
-    .big-btn { font-size: 1.4rem; padding: 20px; }
+    .big-btn { font-size: 1.5rem; padding: 24px; }
   </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen flex items-center justify-center p-6">
 
   <div class="max-w-md w-full text-center">
+    
+    <!-- === TU LOGO === -->
+    <img src="https://sl.bing.net/ivoo3eeuWMS" 
+         class="mx-auto mb-8 w-40 h-auto rounded-xl shadow-2xl" 
+         alt="Logo INJIBOA">
+
     <h1 class="text-4xl font-bold mb-2">🚀 MAC del teléfono</h1>
-    <p class="text-lg text-zinc-400 mb-10">Pulsa el botón y copia tu MAC en 10 segundos</p>
+    <p class="text-lg text-zinc-400 mb-10">Pulsa el botón y en 15 segundos la tienes</p>
 
     <!-- BOTÓN PRINCIPAL -->
     <a href="intent:#Intent;action=android.settings.DEVICE_INFO_SETTINGS;end"
-       class="big-btn block w-full bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-2xl mb-8 transition">
+       class="big-btn block w-full bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-3xl mb-10 transition shadow-xl">
       ABRIR ACERCA DEL TELÉFONO
     </a>
 
-    <div id="instrucciones" class="text-left bg-zinc-900 rounded-2xl p-6 text-sm">
-      <!-- Se llena con JS -->
+    <div id="instrucciones" class="text-left bg-zinc-900 rounded-3xl p-7 text-base leading-relaxed">
+      <!-- JS lo llena -->
     </div>
 
     <button onclick="copyInstructions()" 
-            class="mt-6 text-emerald-400 underline text-sm">
-      Copiar instrucciones para WhatsApp
+            class="mt-8 text-emerald-400 underline text-base font-medium">
+      📋 Copiar instrucciones para WhatsApp
     </button>
   </div>
 
@@ -39,29 +45,29 @@
 
     if (ua.includes("Samsung")) {
       marca = "Samsung";
-      pasos = `1. En "Acerca del dispositivo" toca "Estado" o "Información del hardware"<br>2. Busca "Dirección MAC Wi-Fi" o "Wi-Fi MAC address"<br>3. Copia la dirección (ej: 00:11:22:33:44:55)`;
+      pasos = `1. Toca "Estado" o "Información del hardware"<br>2. Busca "Dirección MAC Wi-Fi" o "Wi-Fi MAC address"<br>3. Copia toda la dirección (ejemplo: 00:11:22:33:44:55)`;
     } else if (ua.includes("Xiaomi") || ua.includes("Redmi") || ua.includes("Poco")) {
       marca = "Xiaomi / Redmi / Poco";
-      pasos = `1. Toca "Acerca del teléfono"<br>2. Toca "Estado" o "Información del hardware"<br>3. Busca "MAC address" o "Dirección MAC Wi-Fi"`;
+      pasos = `1. Toca "Estado" o "Información del hardware"<br>2. Busca "MAC address" o "Dirección MAC Wi-Fi"<br>3. Copia la dirección completa`;
     } else if (ua.includes("OPPO") || ua.includes("Realme") || ua.includes("Vivo")) {
       marca = "OPPO / Realme / Vivo";
-      pasos = `1. Toca "Acerca del teléfono"<br>2. Baja hasta "Estado" o "Información"<br>3. Encuentra "Wi-Fi MAC" o "MAC address"`;
+      pasos = `1. Baja hasta "Estado" o "Información"<br>2. Encuentra "Wi-Fi MAC" o "MAC address"<br>3. Copia los 17 caracteres`;
     } else if (ua.includes("Google")) {
       marca = "Google Pixel";
-      pasos = `1. Toca "Acerca del teléfono"<br>2. Toca "Estado"<br>3. Busca "Wi-Fi MAC address"`;
+      pasos = `1. Toca "Estado"<br>2. Busca "Wi-Fi MAC address"<br>3. Copia la dirección`;
     } else {
-      pasos = `1. Toca donde dice "Estado", "Status" o "Información del hardware"<br>2. Busca la línea "Dirección MAC Wi-Fi" o "Wi-Fi MAC address"<br>3. Copia los 17 caracteres (con los : )`;
+      pasos = `1. Toca "Estado", "Status" o "Información del hardware"<br>2. Busca la línea "Dirección MAC Wi-Fi"<br>3. Copia toda la dirección (con los :)`;
     }
 
     document.getElementById("instrucciones").innerHTML = `
-      <p class="font-bold mb-3">✅ Ahora en tu ${marca}:</p>
+      <p class="font-bold text-emerald-400 mb-4 text-xl">✅ Ahora en tu ${marca}:</p>
       <p class="text-zinc-300">${pasos}</p>
-      <p class="text-emerald-400 mt-6 text-xs">Vuelve aquí después de copiarla para pegármela</p>
+      <p class="text-emerald-400 mt-8 text-sm bg-zinc-800 p-4 rounded-2xl">Solo es 1 toque más después de abrir. ¡Fácil!</p>
     `;
 
     function copyInstructions() {
       const currentUrl = window.location.href;
-      const text = `Abre este link en tu teléfono:\n${currentUrl}\n\nPulsa el botón verde grande y copia la MAC que aparece en "Estado". ¡Gracias!`;
+      const text = `Abre este link en tu teléfono:\n${currentUrl}\n\nPulsa el botón grande y copia la MAC que aparece en "Estado". ¡Gracias!`;
       navigator.clipboard.writeText(text).then(() => alert("✅ Instrucciones copiadas para WhatsApp"));
     }
   </script>
